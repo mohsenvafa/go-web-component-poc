@@ -1,4 +1,4 @@
-package handlers
+package user_profile
 
 import (
 	"encoding/json"
@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"strconv"
 
-	"patient-profile-webcomponent/components/user_profile"
 	"patient-profile-webcomponent/models"
 
 	"github.com/gorilla/mux"
@@ -77,6 +76,6 @@ func GetPatientProfileHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Render the patient profile component
-	component := user_profile.UserProfile(*patient)
+	component := UserProfile(*patient)
 	component.Render(r.Context(), w)
 }

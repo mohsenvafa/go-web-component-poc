@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 
+	"patient-profile-webcomponent/components/user_profile"
 	"patient-profile-webcomponent/handlers"
 
 	"github.com/gorilla/mux"
@@ -32,8 +33,8 @@ func main() {
 	r := mux.NewRouter()
 
 	// API routes
-	r.HandleFunc("/api/patient/{id}", handlers.GetPatientHandler).Methods("GET")
-	r.HandleFunc("/patient/{id}", handlers.GetPatientProfileHandler).Methods("GET")
+	r.HandleFunc("/api/patient/{id}", user_profile.GetPatientHandler).Methods("GET")
+	r.HandleFunc("/patient/{id}", user_profile.GetPatientProfileHandler).Methods("GET")
 
 	// Web component and demo page
 	r.HandleFunc("/webcomponent.js", handlers.GetWebComponentHandler).Methods("GET")

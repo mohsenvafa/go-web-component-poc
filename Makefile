@@ -1,4 +1,4 @@
-.PHONY: help setup run-all clean-all
+.PHONY: help setup run-all clean-all stop-all stop-port
 
 # Show help
 help:
@@ -11,9 +11,13 @@ help:
 	@echo "  run-all    - Run all services (requires 3 terminals)"
 	@echo ""
 	@echo "Individual services:"
-	@echo "  run-webcomponent  - Run PatientProfileGoWebComponent (port 8080)"
-	@echo "  run-go-portal     - Run PocPortalGoSurfaceApp (port 8081)"
-	@echo "  run-react-portal  - Run PocPortalReactApp (port 3000)"
+	@echo "  run-webcomponent  - Run PatientProfileGoWebComponent (port 8091)"
+	@echo "  run-go-portal     - Run PocPortalGoSurfaceApp (port 8092)"
+	@echo "  run-react-portal  - Run PocPortalReactApp (port 8093)"
+	@echo ""
+	@echo "Stopping services:"
+	@echo "  stop-all   - Stop all POC services (ports 8091, 8092, 8093)"
+	@echo "  stop-port  - Stop service on specific port (usage: make stop-port PORT=8091)"
 	@echo ""
 	@echo "Cleanup:"
 	@echo "  clean-all  - Clean all build artifacts"
@@ -55,6 +59,21 @@ run-go-portal:
 run-react-portal:
 	@echo "Starting PocPortalReactApp on port 8093..."
 	cd PocPortalReactApp && make start
+
+# Stop all POC services
+stop-all:
+	@echo "Stopping all POC services..."
+	./stop-services.sh
+
+# Stop service on specific port
+stop-port:
+	@if [ -z "$(PORT)" ]; then \
+		echo "Usage: make stop-port PORT=<port_number>"; \
+		echo "Example: make stop-port PORT=8091"; \
+		exit 1; \
+	fi
+	@echo "Stopping service on port $(PORT)..."
+	./kill-port.sh $(PORT)
 
 # Clean all build artifacts
 clean-all:
