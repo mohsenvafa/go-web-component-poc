@@ -1,4 +1,4 @@
-package handlers
+package web_components
 
 import (
 	"net/http"

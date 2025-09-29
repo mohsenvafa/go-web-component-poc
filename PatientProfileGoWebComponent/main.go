@@ -7,7 +7,7 @@ import (
 
 	"patient-profile-webcomponent/api"
 	"patient-profile-webcomponent/components/user_profile"
-	"patient-profile-webcomponent/handlers"
+	"patient-profile-webcomponent/web_components"
 
 	"github.com/gorilla/mux"
 )
@@ -38,8 +38,8 @@ func main() {
 	r.HandleFunc("/patient/{id}", user_profile.GetPatientProfileHandler).Methods("GET")
 
 	// Web component and demo page
-	r.HandleFunc("/webcomponent.js", handlers.GetWebComponentHandler).Methods("GET")
-	r.HandleFunc("/", handlers.GetIndexHandler).Methods("GET")
+	r.HandleFunc("/webcomponent.js", web_components.GetWebComponentHandler).Methods("GET")
+	r.HandleFunc("/", web_components.GetIndexHandler).Methods("GET")
 
 	// Serve static files (if any)
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
