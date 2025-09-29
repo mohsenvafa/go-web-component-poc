@@ -1,0 +1,33 @@
+package components
+
+import "patient-profile-webcomponent/models"
+
+templ UserProfile(patient models.Patient) {
+	<div class="patient-profile">
+		<h3>Patient Profile2</h3>
+		<div class="field">
+			<span class="label">Name1:</span>
+			<span class="value">{ patient.Name }</span>
+		</div>
+		<div class="field">
+			<span class="label">Email:</span>
+			<span class="value">{ patient.Email }</span>
+		</div>
+		<div class="field">
+			<span class="label">Phone:</span>
+			<span class="value">{ patient.Phone }</span>
+		</div>
+		<div class="field">
+			<span class="label">Date of Birth:</span>
+			<span class="value">{ patient.DateOfBirth }</span>
+		</div>
+		<div class="field">
+			<span class="label">Address:</span>
+			<span class="value">{ patient.Address }</span>
+		</div>
+		<div class="field">
+			<span class="label">Medical ID:</span>
+			<span class="value">{ patient.MedicalID }</span>
+		</div>
+	</div>
+}
