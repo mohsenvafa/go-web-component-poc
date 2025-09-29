@@ -1,6 +1,7 @@
-package user_profile
+package api
 
 import (
+	"encoding/json"
 	"net/http"
 	"strconv"
 
@@ -9,8 +10,8 @@ import (
 	"github.com/gorilla/mux"
 )
 
-// Serve the patient profile as HTML (for HTMX)
-func GetPatientProfileHandler(w http.ResponseWriter, r *http.Request) {
+// GetPatientHandler - API endpoint to get patient data as JSON
+func GetPatientHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	patientID, err := strconv.Atoi(vars["id"])
 	if err != nil {
@@ -24,7 +25,6 @@ func GetPatientProfileHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Render the patient profile component
-	component := UserProfile(*patient)
-	component.Render(r.Context(), w)
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(patient)
 }

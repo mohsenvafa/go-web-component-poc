@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 
+	"patient-profile-webcomponent/api"
 	"patient-profile-webcomponent/components/user_profile"
 	"patient-profile-webcomponent/handlers"
 
@@ -33,7 +34,7 @@ func main() {
 	r := mux.NewRouter()
 
 	// API routes
-	r.HandleFunc("/api/patient/{id}", user_profile.GetPatientHandler).Methods("GET")
+	r.HandleFunc("/api/patient/{id}", api.GetPatientHandler).Methods("GET")
 	r.HandleFunc("/patient/{id}", user_profile.GetPatientProfileHandler).Methods("GET")
 
 	// Web component and demo page
