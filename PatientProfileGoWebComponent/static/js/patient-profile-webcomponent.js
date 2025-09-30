@@ -1,55 +1,41 @@
 // Check if the component is already defined
-if (typeof PatientProfileComponent === 'undefined') {
-class PatientProfileComponent extends HTMLElement {
-	constructor() {
-		super();
-		this.attachShadow({ mode: 'open' });
-	}
+if (typeof PatientProfileComponent === "undefined") {
+  class PatientProfileComponent extends HTMLElement {
+    constructor() {
+      super();
+      this.attachShadow({ mode: "open" });
+    }
 
-	connectedCallback() {
-		const patientId = this.getAttribute('patient-id');
-		if (!patientId) {
-			this.shadowRoot.innerHTML = '<p>Error: patient-id attribute is required</p>';
-			return;
-		}
+    connectedCallback() {
+      const patientId = this.getAttribute("patient-id");
+      if (!patientId) {
+        this.shadowRoot.innerHTML =
+          "<p>Error: patient-id attribute is required</p>";
+        return;
+      }
 
-		this.loadPatientProfile(patientId);
-	}
+      this.loadPatientProfile(patientId);
+    }
 
-	async loadPatientProfile(patientId) {
-		try {
-			const response = await fetch('http://localhost:8091/api/patient/' + patientId);
-			if (!response.ok) {
-				throw new Error('Failed to load patient data');
-			}
-			const patient = await response.json();
-			
-			// Create the patient profile HTML
-			const html = '<style>' +
-				'.patient-profile { font-family: Arial, sans-serif; border: 1px solid #ddd; border-radius: 8px; padding: 20px; background: #f9f9f9; max-width: 400px; margin: 10px; }' +
-				'.patient-profile h3 { margin-top: 0; color: #333; border-bottom: 2px solid #007bff; padding-bottom: 10px; }' +
-				'.patient-profile .field { margin: 10px 0; }' +
-				'.patient-profile .label { font-weight: bold; color: #555; }' +
-				'.patient-profile .value { color: #333; }' +
-				'</style>' +
-				'<div class="patient-profile">' +
-				'<h3>Patient Profile</h3>' +
-				'<div class="field"><span class="label">Name:</span><span class="value">' + patient.name + '</span></div>' +
-				'<div class="field"><span class="label">Email:</span><span class="value">' + patient.email + '</span></div>' +
-				'<div class="field"><span class="label">Phone:</span><span class="value">' + patient.phone + '</span></div>' +
-				'<div class="field"><span class="label">Date of Birth:</span><span class="value">' + patient.dateOfBirth + '</span></div>' +
-				'<div class="field"><span class="label">Address:</span><span class="value">' + patient.address + '</span></div>' +
-				'<div class="field"><span class="label">Medical ID:</span><span class="value">' + patient.medicalId + '</span></div>' +
-				'</div>';
-			this.shadowRoot.innerHTML = html;
-		} catch (error) {
-			this.shadowRoot.innerHTML = '<p>Error loading patient profile: ' + error.message + '</p>';
-		}
-	}
-}
+    async loadPatientProfile(patientId) {
+      try {
+        const response = await fetch(
+          "http://localhost:8091/patient/" + patientId
+        );
+        if (!response.ok) {
+          throw new Error("Failed to load patient profile");
+        }
+        const html = await response.text();
+        this.shadowRoot.innerHTML = html;
+      } catch (error) {
+        this.shadowRoot.innerHTML =
+          "<p>Error loading patient profile: " + error.message + "</p>";
+      }
+    }
+  }
 
-// Only define the custom element if it hasn't been defined already
-if (!customElements.get('patient-profile')) {
-	customElements.define('patient-profile', PatientProfileComponent);
-}
+  // Only define the custom element if it hasn't been defined already
+  if (!customElements.get("patient-profile")) {
+    customElements.define("patient-profile", PatientProfileComponent);
+  }
 }

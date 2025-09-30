@@ -3,8 +3,35 @@ package user_profile
 import "patient-profile-webcomponent/models"
 
 templ UserProfile(patient models.Patient) {
+	<style>
+		.patient-profile { 
+			font-family: Arial, sans-serif; 
+			border: 1px solid #ddd; 
+			border-radius: 8px; 
+			padding: 20px; 
+			background: #f9f9f9; 
+			max-width: 400px; 
+			margin: 10px; 
+		}
+		.patient-profile h3 { 
+			margin-top: 0; 
+			color: #333; 
+			border-bottom: 2px solid #007bff; 
+			padding-bottom: 10px; 
+		}
+		.patient-profile .field { 
+			margin: 10px 0; 
+		}
+		.patient-profile .label { 
+			font-weight: bold; 
+			color: #555; 
+		}
+		.patient-profile .value { 
+			color: #333; 
+		}
+	</style>
 	<div class="patient-profile">
-		<h3>Patient Profile</h3>
+		<h3>Patient Profile From Go</h3>
 		<div class="field">
 			<span class="label">Name:</span>
 			<span class="value">{ patient.Name }</span>
