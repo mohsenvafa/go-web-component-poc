@@ -11,6 +11,7 @@ go.work
 # Generated files
 components/*.go
 *.templ.go
+*_templ.go
 
 # Node.js
 node_modules/
