@@ -27,13 +27,13 @@ func GetIndexHandler(w http.ResponseWriter, r *http.Request) {
     <p>This page demonstrates the patient profile web component:</p>
     
     <h2>Patient 1:</h2>
-    <patient-profile patient-id="1"></patient-profile>
+    <patient-profile patient-id="1" base-url="http://localhost:8091"></patient-profile>
     
     <h2>Patient 2:</h2>
-    <patient-profile patient-id="2"></patient-profile>
+    <patient-profile patient-id="2" base-url="http://localhost:8091"></patient-profile>
     
     <h2>Non-existent Patient (Error case):</h2>
-    <patient-profile patient-id="999"></patient-profile>
+    <patient-profile patient-id="999" base-url="http://localhost:8091"></patient-profile>
 </body>
 </html>
 `
