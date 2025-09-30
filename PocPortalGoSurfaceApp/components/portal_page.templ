@@ -57,26 +57,20 @@ templ PortalPage() {
 	</head>
 	<body>
 		<div class="container">
-			<div class="header">
+			<div class="header info">
 				<h1>POC Portal - Go Surface App</h1>
 				<p>This Go application demonstrates consuming the Patient Profile Web Component</p>
 			</div>
 			
-			<div class="info">
-				<h3>About this POC</h3>
-				<p>This portal application consumes the Patient Profile Web Component from the PatientProfileGoWebComponent service. 
-				The web component is loaded dynamically and displays patient information.</p>
-				<p><strong>Note:</strong> Make sure the PatientProfileGoWebComponent service is running on port 8080.</p>
-			</div>
 			
 			<div class="patient-grid">
 				<div class="patient-section">
-					<h3>Patient 1 - John Doe</h3>
+					<h3>Patient 1</h3>
 					<patient-profile patient-id="1"></patient-profile>
 				</div>
 				
 				<div class="patient-section">
-					<h3>Patient 2 - Jane Smith</h3>
+					<h3>Patient 2</h3>
 					<patient-profile patient-id="2"></patient-profile>
 				</div>
 			</div>
