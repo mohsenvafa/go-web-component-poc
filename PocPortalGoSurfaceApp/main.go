@@ -56,21 +56,6 @@ func main() {
 		resp.Write(w)
 	}).Methods("GET")
 
-	// Proxy API calls to the patient profile service
-	r.HandleFunc("/api/patient/{id}", func(w http.ResponseWriter, r *http.Request) {
-		// Proxy the request to the PatientProfileGoWebComponent service
-		resp, err := http.Get("http://localhost:8091/api/patient/" + r.URL.Path[len("/api/patient/"):])
-		if err != nil {
-			http.Error(w, "Failed to load patient data", http.StatusInternalServerError)
-			return
-		}
-		defer resp.Body.Close()
-
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(resp.StatusCode)
-		resp.Write(w)
-	}).Methods("GET")
-
 	// Apply CORS middleware to all routes
 	handler := corsMiddleware(r)
 

@@ -27,7 +27,7 @@ class PatientProfileComponent extends HTMLElement {
 
 	async loadPatientProfile(patientId) {
 		try {
-			const response = await fetch('/api/patient/' + patientId);
+			const response = await fetch('http://localhost:8091/api/patient/' + patientId);
 			if (!response.ok) {
 				throw new Error('Failed to load patient data');
 			}
